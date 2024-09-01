@@ -19,9 +19,14 @@ def application(environ, start_response):
     if request_body_size > 0:
         request_body = environ['wsgi.input'].read(request_body_size).decode('utf-8')
         post_data = parse_qs(request_body)
-        view_img = post_data.get('view_img')[0]
-        name_go = post_data.get('name_go')[0]
-        num_page = int(post_data.get('num_page')[0])
+        
+        view_img = post_data.get('view_img')
+        name_go = post_data.get('name_go')
+        num_page = post_data.get('num_page')
+                
+        view_img = view_img[0] if view_img is not None else '-'
+        name_go = name_go[0] if name_go is not None else '-'
+        num_page = int(num_page[0]) if name_go is not None else 0
         
         if view_img == '2:2':
             int_num = 2
