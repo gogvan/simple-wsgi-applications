@@ -14,7 +14,8 @@ def application(environ, start_response):
     
     request_body_size = int(environ.get('CONTENT_LENGTH', 0))
     num_page = 0
-        
+    view_img = '2:1'
+    
     if request_body_size > 0:
         request_body = environ['wsgi.input'].read(request_body_size).decode('utf-8')
         post_data = parse_qs(request_body)
